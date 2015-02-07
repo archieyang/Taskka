@@ -29,8 +29,9 @@ angular
         templateUrl: 'views/post.html',
         controller: 'TaskCtrl'
       })
-      .when('/edit', {
-        templateUrl: 'views/edit.html'
+      .when('/edit/:taskId', {
+        templateUrl: 'views/edit.html',
+        controller: 'TaskCtrl'
       })
       .when('/browse', {
         templateUrl: 'views/browse.html',
