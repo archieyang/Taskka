@@ -42,10 +42,12 @@ angular
                 controller: 'AboutCtrl'
             })
             .when('/register', {
-                templateUrl: 'views/register.html'
+                templateUrl: 'views/register.html',
+                controller: 'AuthCtrl'
             })
             .when('/login', {
-                templateUrl: 'views/login.html'
+                templateUrl: 'views/login.html',
+                controller: 'AuthCtrl'
             })
             .otherwise({
                 redirectTo: '/'
