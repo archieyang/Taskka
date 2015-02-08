@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('taskkaApp').controller('TaskCtrl', function($scope, FIREBASE_URL, $firebase, $location, $routeParams){
+angular.module('taskkaApp').controller('TaskCtrl', function($scope, FIREBASE_URL, $firebase, $location, $routeParams, toaster){
     var ref = new Firebase(FIREBASE_URL);
     var fbTask = $firebase(ref.child('tasks')).$asArray();
     var taskId = $routeParams.taskId;
@@ -11,6 +11,7 @@ angular.module('taskkaApp').controller('TaskCtrl', function($scope, FIREBASE_URL
 
 	$scope.postTask = function(task) {
         fbTask.$add(task);
+        toaster.pop('success', "Task is created.");
         $location.path('/browse');
     }
 
@@ -23,6 +24,7 @@ angular.module('taskkaApp').controller('TaskCtrl', function($scope, FIREBASE_URL
     }
     $scope.updateTask = function(task) {
         $scope.selectedTask.$save(task);
+        toaster.pop('success', "Task is updated.");
         $location.path('/browse');
     }
 });

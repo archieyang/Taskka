@@ -16,7 +16,8 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'firebase'
+        'firebase',
+        'toaster'
     ])
     .constant('FIREBASE_URL', 'https://taskka.firebaseio.com/')
     .config(function ($routeProvider) {
