@@ -24,16 +24,16 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl',
+                controller: 'MainCtrl'
             })
-            .when('/post', {
-                templateUrl: 'views/post.html',
-                controller: 'TaskCtrl'
-            })
-            .when('/edit/:taskId', {
-                templateUrl: 'views/edit.html',
-                controller: 'TaskCtrl'
-            })
+//            .when('/post', {
+//                templateUrl: 'views/post.html',
+//                controller: 'TaskCtrl'
+//            })
+//            .when('/edit/:taskId', {
+//                templateUrl: 'views/edit.html',
+//                controller: 'TaskCtrl'
+//            })
             .when('/browse', {
                 templateUrl: 'views/browse.html',
                 controller: 'TaskCtrl'
