@@ -24,8 +24,8 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'views/browse.html',
+                controller: 'BrowseCtrl'
             })
 //            .when('/post', {
 //                templateUrl: 'views/post.html',
@@ -35,9 +35,9 @@ angular
 //                templateUrl: 'views/edit.html',
 //                controller: 'TaskCtrl'
 //            })
-            .when('/browse', {
+            .when('/browse/:taskId', {
                 templateUrl: 'views/browse.html',
-                controller: 'TaskCtrl'
+                controller: 'BrowseCtrl'
             })
             .when('/about', {
                 templateUrl: 'views/about.html',

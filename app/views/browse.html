@@ -10,20 +10,20 @@
                         <input type="text" ng-model="searchTask" class="form-control" placeholder="Search">
                     </div>
                 </div>
-                <a ng-repeat="task in tasks | filter: searchTask | orderBy: 'title'" ng-href="#/browse/{{task.$id}}">
+                <a ng-repeat="task in tasks | filter: {title:searchTask, status:'!cancelled' } | orderBy: 'datetime':true" ng-href="#/browse/{{task.$id}}">
                     <div class="list-group-item">
                         <div class="row-picture">
-                            <img class="circle" ng-src="">
+                            <img class="circle" ng-src="{{task.gravatar}}">
                         </div>
                         <div class="row-content">
                             <h4 class="list-group-item-heading">{{task.title | limitTo:25}}{{task.title.length > 25 ? '...' : ''}}</h4>
                     <span class="list-group-item-text">
-                        <span am-time-ago="1421840368791"></span>&nbsp;
+                        <span am-time-ago="task.datetime"></span>&nbsp;
                     </span>
                         </div>
                         <div class="payment">
                             <div>${{task.price}}</div>
-                            <span class="label status open">open</span>
+                            <div>{{task.status}}</div>
                         </div>
                     </div>
                     <div class="list-group-separator"></div>
@@ -31,52 +31,54 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div ng-show="false">
+            <div ng-show="listMode">
                 <img src="images/browse.jpg" class="img-responsive img-browse">
             </div>
-            <div ng-show="true">
+            <div ng-show="!listMode">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3>Task title here</h3>
+                        <h3>{{selectedTask.title}}</h3>
                         <span>
                             <img ng-src="" class="img-circle gravatar">
-                            Posted by Archie Yang
-                            <span am-time-ago="1421840368791"></span>&nbsp;
-                            <span class="label status open">Open</span>
+                            Posted by {{selectedTask.name}}
+                            <span am-time-ago="selectedTask.datetime"></span>&nbsp;
+
+                            {{selectedTask.status}}
                         </span>
                     </div>
                     <div class="col-md-4 title">
                         <div class="price-tag">
-                            $150
+                            ${{selectedTask.price}}
                         </div>
-                        <div ng-show="true">
+                        <div ng-show='isTaskCreator(selectedTask) && isOpen(selectedTask)'>
                             <div class="btn-group">
                                 <a href="" class="btn btn-warning">Admin</a>
                                 <a href="" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="" data-toggle="modal" data-target="#ediModal">EDIT TASK</a> </li>
                                     <li class="divider"></li>
-                                    <li><a href="" ng-click="">CANCEL TASK</a> </li>
+                                    <li><a href="" ng-click="cancelTask(selectedTask.$id)">CANCEL TASK</a> </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
+                <br>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Description</h3>
-                        </div>
-                        <div class="panel-body">
-                            This is task's description
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Description</h3>
+                            </div>
+                            <div class="panel-body">
+                                {{selectedTask.description}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <br>
         <br>
