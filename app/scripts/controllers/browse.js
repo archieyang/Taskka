@@ -68,4 +68,13 @@ angular.module('taskkaApp').controller('BrowseCtrl', function ($scope, $routePar
             }
         );
     }
+
+    $scope.isOfferMaker = Offer.isMaker;
+    $scope.cancelOffer = function(offerId) {
+        Offer.cancelOffer($scope.selectedTask.$id, offerId).then(function () {
+            toaster.pop('success', "Your offer has been cancelled.");
+            $scope.alreadyOffered = false;
+            $scope.block = false;
+        });
+    };
 });

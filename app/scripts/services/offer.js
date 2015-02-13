@@ -16,6 +16,16 @@ angular.module('taskkaApp')
                     return taskOffers.$add(offer);
                 }
             },
+            cancelOffer: function(taskId, offerId) {
+                return this.getOffer(taskId, offerId).$remove();
+            },
+            getOffer: function(taskId, offerId) {
+              return $firebase(ref.child('offers').child(taskId).child(offerId));
+            },
+
+            isMaker: function(offer) {
+                return (user && user.provider && user.uid === offer.uid);
+            },
             isOffered: function (taskId) {
                 if (user && user.provider) {
                     var d = $q.defer();
