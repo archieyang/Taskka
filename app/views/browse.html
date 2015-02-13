@@ -64,7 +64,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div ng-show="isOpen(selectedTask) && !isTaskCreator(selectedTask)">
+                        <div ng-show="isOpen(selectedTask) && !isTaskCreator(selectedTask) && !alreadyOffered">
                             <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#offModal">Make an Offer</button>
                         </div>
                     </div>
@@ -99,6 +99,9 @@
                                 <div class="col-lg-10">
                                     <img src="{{offer.gravatar}}" class="img-circle gravatar">
                                     <span>{{offer.name}}</span>
+                                </div>
+                                <div class="col-lg-2">
+                                    {{offer.price}}
                                 </div>
                             </div><br>
                         </div>

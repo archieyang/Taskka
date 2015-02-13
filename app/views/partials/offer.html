@@ -9,8 +9,8 @@
                 </div>
                 <div class="panel-body">
                     <form ng-submit="makeOffer()">
-                        <input type="number" ng-model="price" class="form-control" placeholder="How much money will you offer" required>
-                        <input type="submit" value="Offer Now" class="btn btn-info">
+                        <input type="number" ng-model="$parent.price" class="form-control" placeholder="How much money will you offer" required ng-disabled="$parent.block">
+                        <input type="submit" value="Offer Now" class="btn btn-info" ng-disabled="$parent.block">
                     </form>
                 </div>
             </div>
