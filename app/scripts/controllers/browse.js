@@ -17,6 +17,8 @@ angular.module('taskkaApp').controller('BrowseCtrl', function ($scope, $routePar
         if($scope.signedIn()) {
             $scope.isTaskCreator = Task.isCreator;
             $scope.isOpen = Task.isOpen;
+            $scope.isAssignee = Task.isAssignee;
+            $scope.isCompleted = Task.isCompleted;
             console.log(Task.isCreator(task));
             console.log(task.name);
             console.log(task.status + "");
@@ -77,4 +79,16 @@ angular.module('taskkaApp').controller('BrowseCtrl', function ($scope, $routePar
             $scope.block = false;
         });
     };
+
+  $scope.acceptOffer = function(offerId, runnerId) {
+    Offer.acceptOffer($scope.selectedTask.$id, offerId, runnerId).then(function () {
+      toaster.pop('success', 'Offer is accepted.');
+    })
+  }
+
+  $scope.completeTask = function(taskId) {
+    Task.completeTask(taskId).then(function () {
+      toaster.pop('success', 'You have completed this task.');
+    })
+  }
 });
