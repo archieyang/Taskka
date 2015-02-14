@@ -39,6 +39,10 @@ angular.module('taskkaApp')
                 auth.$unauth();
             },
 
+            requireAuth: function() {
+                return auth.$requireAuth();
+            },
+
             changePassword: function(user) {
                 return auth.$changePassword({
                     email: user.email,

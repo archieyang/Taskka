@@ -44,6 +44,8 @@ angular.module('taskkaApp')
         return o.$update({accepted:true}).then(function () {
           var t = Task.getTask(taskId);
           return t.$update({status:"assigned", runner: runnerId});
+        }).then(function () {
+          return Task.createUserTask(taskId);
         });
       }
 
