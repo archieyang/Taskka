@@ -9,7 +9,7 @@ angular.module('taskkaApp').controller('TaskCtrl', function ($scope, $location, 
 
         Task.createTask($scope.task).then(function (ref) {
             toaster.pop('success', 'Task created successfully. ');
-            $scope.task = {title: '', description: '', total: '', status: 'open', gravatar: '', name:'', poster: ''};
+            $scope.task = {title: '', description: '', price: '', status: 'open', gravatar: '', name:'', poster: ''};
             $location.path('/browse/' + ref.key())
         })
     }
